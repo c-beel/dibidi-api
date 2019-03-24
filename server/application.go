@@ -36,6 +36,22 @@ func (app *Application) GetLesson(c *gin.Context) {
 func (app *Application) AddLesson(c *gin.Context) {
 	var lesson db.Lesson
 	c.BindJSON(&lesson)
-	app.DB.Create(&lesson)
-	c.JSON(200, lesson)
+	lesson.ID = 0
+	if err := app.DB.Create(&lesson).Error; err != nil {
+		c.AbortWithStatus(500)
+		fmt.Println(app.DB.Error)
+	} else {
+		c.JSON(200, lesson)
+	}
+}
+
+func (app *Application) EditLesson(c *gin.Context) {
+	var lesson db.Lesson
+	c.BindJSON(&lesson)
+	if err := app.DB.Model(&lesson).Where("id = ?", lesson.ID).Updates(lesson).Error; err != nil {
+		c.AbortWithStatus(500)
+		fmt.Println(app.DB.Error)
+	} else {
+		c.JSON(200, lesson)
+	}
 }
