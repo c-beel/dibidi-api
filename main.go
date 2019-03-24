@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/Dibidi/dibidi-api/db"
+	"github.com/c-beel/dibidi-api/db"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"fmt"
 	"os"
 	"github.com/gin-gonic/gin"
-	"github.com/Dibidi/dibidi-api/server"
+	"github.com/c-beel/dibidi-api/server"
 	"github.com/gin-contrib/cors"
 	_ "time"
 )
