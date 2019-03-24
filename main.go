@@ -28,10 +28,9 @@ func main() {
 	engine.Use(cors.New(cors.Config{
 		AllowOriginFunc: func(origin string) bool {
 			return true
-			//return origin == "http://localhost:3000"
 		},
 	}))
-	//engine.Use(cors.Default())
+	engine.POST("/lessons/add", app.AddLesson)
 	engine.GET("/lessons/", app.GetLessonsList)
 	engine.GET("/lesson/", app.GetLesson)
 

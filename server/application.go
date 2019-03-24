@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/gin-gonic/gin"
-	"github.com/Dibidi/dibidi-api/db"
+	"github.com/c-beel/dibidi-api/db"
 	"fmt"
 )
 
@@ -31,4 +31,11 @@ func (app *Application) GetLesson(c *gin.Context) {
 	} else {
 		c.JSON(200, lesson)
 	}
+}
+
+func (app *Application) AddLesson(c *gin.Context) {
+	var lesson db.Lesson
+	c.BindJSON(&lesson)
+	app.DB.Create(&lesson)
+	c.JSON(200, lesson)
 }
