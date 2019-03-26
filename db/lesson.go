@@ -2,8 +2,16 @@ package db
 
 import _ "github.com/jinzhu/gorm"
 
-type Lesson struct {
+type LessonListItem struct {
 	ID    uint   `gorm:"column:id;primary_key" json:"id"`
 	Title string `gorm:"column:title" json:"title"`
-	Text  string `gorm:"column:text" json:"text"`
+}
+
+type Lesson struct {
+	LessonListItem
+	Text string `gorm:"column:text" json:"text"`
+}
+
+func (Lesson) TableName() string {
+	return "lessons"
 }

@@ -12,8 +12,8 @@ type Application struct {
 }
 
 func (app *Application) GetLessonsList(c *gin.Context) {
-	var lessons []db.Lesson
-	if err := app.DB.Find(&lessons).Error; err != nil {
+	var lessons []db.LessonListItem
+	if err := app.DB.Table(db.Lesson{}.TableName()).Find(&lessons).Error; err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
