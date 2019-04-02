@@ -55,3 +55,11 @@ func (app *Application) EditLesson(c *gin.Context) {
 		c.JSON(200, lesson)
 	}
 }
+
+func (app *Application) DeleteLesson(c *gin.Context) {
+	var lesson db.Lesson
+	c.BindJSON(&lesson)
+	fmt.Println(lesson.ID)
+	app.DB.Delete(&lesson)
+	c.Status(200)
+}

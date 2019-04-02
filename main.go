@@ -34,6 +34,7 @@ func main() {
 	engine.POST("/lessons/edit", app.EditLesson)
 	engine.GET("/lessons/", app.GetLessonsList)
 	engine.GET("/lesson/", app.GetLesson)
+	engine.DELETE("/lessons/delete", app.DeleteLesson)
 
 	engine.Run(":8080")
 }
